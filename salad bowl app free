@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salad Bowl Selector</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function SaladBowl() {
+            const [bowlChoice, setBowlChoice] = React.useState('1');
+
+            const bowls = [
+                { value: '1', label: 'Classic Salad Bowl' },
+                { value: '2', label: 'Wooden Salad Bowl' },
+                { value: '3', label: 'Ceramic Salad Bowl' },
+                { value: '4', label: 'Glass Salad Bowl' },
+                { value: '5', label: 'Metal Salad Bowl' },
+            ];
+
+            const handleChange = (e) => {
+                setBowlChoice(e.target.value);
+            };
+
+            return (
+                <div>
+                    <h2>Select Your Salad Bowl</h2>
+                    <select value={bowlChoice} onChange={handleChange}>
+                        {bowls.map((bowl) => (
+                            <option key={bowl.value} value={bowl.value}>
+                                {bowl.label}
+                            </option>
+                        ))}
+                    </select>
+                    <h3>You have selected: {bowls.find(bowl => bowl.value === bowlChoice)?.label}</h3>
+                </div>
+            );
+        }
+
+        const container = document.getElementById('root');
+        ReactDOM.createRoot(container).render(<SaladBowl />);
+    </script>
+</body>
+</html>
